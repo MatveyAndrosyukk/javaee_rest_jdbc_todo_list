@@ -1,0 +1,14 @@
+
+html * {
+    font-family: Helvetica, serif
+}
+
+form {
+    display: inline-block;
+}
+
+body {
+    background-color: #EAF2F8;
+}
+
+
