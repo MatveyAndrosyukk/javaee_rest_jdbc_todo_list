@@ -1,26 +1,35 @@
 package api.service;
 
+import api.dao.UserDAO;
+import api.model.User;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.digest.DigestUtils;
 
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import java.sql.SQLException;
+import java.util.Optional;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@Slf4j
 public class AuthenticationServiceImpl implements AuthenticationService{
-    private final Map<String, String> userData = new ConcurrentHashMap<>();
-
-    {
-        userData.put("admin", DigestUtils.md5Hex("admin"));
-    }
+    private UserDAO userDAO;
 
     @Override
-    public boolean isUsernameExists(String username) {
-        return this.userData.containsKey(username);
-    }
+    public boolean isAuthenticated(String email, String password) {
+        try {
+            Optional<User> findByEmail = userDAO.findByEmail(email);
+            if (findByEmail.isEmpty()) return false;
 
-    @Override
-    public boolean isAuthenticated(String username, String password) {
-        if (!isUsernameExists(username)) return false;
-
-        return this.userData.get(username).equals(DigestUtils.md5Hex(password));
+            User user = findByEmail.get();
+            return user.getPassword().equals(DigestUtils.md5Hex(password));
+        } catch (SQLException exception) {
+            log.error(exception.getMessage(), exception);
+            exception.printStackTrace();
+            return false;
+        }
     }
 }

@@ -9,10 +9,6 @@ import java.io.IOException;
 
 @WebFilter(urlPatterns = "/*")
 public class AuthenticationFilter implements Filter {
-    @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-        Filter.super.init(filterConfig);
-    }
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
@@ -20,21 +16,27 @@ public class AuthenticationFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
         String path = request.getRequestURI().substring(request.getContextPath().length());
-        if(path.startsWith("/login") || path.startsWith("/WEB-INF/images")){
+        if(path.startsWith("/login") || path.startsWith("/WEB-INF/images") ||
+                path.startsWith("/registration") || path.startsWith("/rest")){
             filterChain.doFilter(request, response);
             return;
         }
 
         HttpSession session = request.getSession(false);
         if (session == null){
-            request.getRequestDispatcher("/WEB-INF/view/login-page.html").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/view/login-page.jsp").forward(request, response);
         }else {
             filterChain.doFilter(request, response);
         }
     }
 
     @Override
+    public void init(FilterConfig filterConfig) {
+
+    }
+
+    @Override
     public void destroy() {
-        Filter.super.destroy();
+
     }
 }

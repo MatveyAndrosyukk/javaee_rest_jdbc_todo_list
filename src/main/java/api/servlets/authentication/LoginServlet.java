@@ -1,4 +1,4 @@
-package api.servlets;
+package api.servlets.authentication;
 
 import api.service.AuthenticationService;
 
@@ -12,25 +12,26 @@ public class LoginServlet extends HttpServlet {
     private AuthenticationService authenticationService;
 
     @Override
-    public void init() throws ServletException {
+    public void init() {
         this.authenticationService = (AuthenticationService) getServletContext().getAttribute("authenticationService");
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/WEB-INF/view/login-page.html").forward(request, response);
+        getServletContext().getRequestDispatcher("/WEB-INF/view/login-page.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        final String username = request.getParameter("username");
+        final String email = request.getParameter("email");
         final String password = request.getParameter("password");
 
-        if (authenticationService.isAuthenticated(username, password)){
-            request.getSession();
+        if (authenticationService.isAuthenticated(email, password)){
+            final HttpSession session = request.getSession();
+            session.setAttribute("email", email);
             response.sendRedirect("/tasks-menu");
         }else {
-            response.setCharacterEncoding("UTF-8");
+            response.setContentType("text/HTML; charset=UTF-8");
             response.getWriter().write("Неверный логин или пароль");
         }
 
