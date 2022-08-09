@@ -9,6 +9,7 @@ import api.dao.UserDAO;
 import api.dao.UserDAOImpl;
 import api.service.*;
 import api.service.rest_handlers.*;
+import com.googlecode.flyway.core.Flyway;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
@@ -41,6 +42,9 @@ public class ContextListener implements ServletContextListener{
         restApiPostHandlerService = new RestApiPostHandlerService(taskDAO, userDAO);
         restApiPutHandlerService = new RestApiPutHandlerService(taskDAO, userDAO);
         restApiDeleteHandlerService = new RestApiDeleteHandlerService(taskDAO);
+        Flyway flyway = new Flyway();
+        flyway.setDataSource(dataSource);
+        flyway.migrate();
 
         servletContext.setAttribute("authenticationService", authenticationService);
         servletContext.setAttribute("taskService", taskService);

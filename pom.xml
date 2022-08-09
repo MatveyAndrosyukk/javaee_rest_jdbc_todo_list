@@ -90,17 +90,33 @@
       <version>8.0.30</version>
     </dependency>
 
+    <dependency>
+      <groupId>com.googlecode.flyway</groupId>
+      <artifactId>flyway-core</artifactId>
+      <version>1.5</version>
+    </dependency>
+
   </dependencies>
 
   <build>
     <finalName>javaee_rest_jdbc_todo_list</finalName>
-    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+    <pluginManagement>
       <plugins>
+        <plugin>
+          <groupId>com.googlecode.flyway</groupId>
+          <artifactId>flyway-maven-plugin</artifactId>
+          <version>1.5</version>
+          <configuration>
+            <user>user228</user>
+            <password>user228</password>
+            <driver>com.mysql.jdbc.Driver</driver>
+            <url>jdbc:mysql://localhost:3306/javaee_task_db?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;connectionCollation=utf8_general_ci&amp;characterSetResults=UTF-8</url>
+          </configuration>
+        </plugin>
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
           <version>3.1.0</version>
         </plugin>
-        <!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging -->
         <plugin>
           <artifactId>maven-resources-plugin</artifactId>
           <version>3.0.2</version>
