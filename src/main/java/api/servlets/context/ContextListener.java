@@ -35,16 +35,17 @@ public class ContextListener implements ServletContextListener{
         SessionManager sessionManager = new SessionManagerJDBC(dataSource);
         UserDAO userDAO = new UserDAOImpl(sessionManager);
         TaskDAO taskDAO = new TaskDAOImpl(sessionManager);
-        authenticationService = new AuthenticationServiceImpl(userDAO);
-        taskService = new TaskServiceImpl(taskDAO);
-        userService = new UserServiceImpl(userDAO);
-        restApiGetHandlerService = new RestApiGetHandlerService(taskDAO, userDAO);
-        restApiPostHandlerService = new RestApiPostHandlerService(taskDAO, userDAO);
-        restApiPutHandlerService = new RestApiPutHandlerService(taskDAO, userDAO);
-        restApiDeleteHandlerService = new RestApiDeleteHandlerService(taskDAO);
         Flyway flyway = new Flyway();
         flyway.setDataSource(dataSource);
         flyway.migrate();
+        this.authenticationService = new AuthenticationServiceImpl(userDAO);
+        this.taskService = new TaskServiceImpl(taskDAO);
+        this.userService = new UserServiceImpl(userDAO);
+        this.restApiGetHandlerService = new RestApiGetHandlerService(taskDAO, userDAO);
+        this.restApiPostHandlerService = new RestApiPostHandlerService(taskDAO, userDAO);
+        this.restApiPutHandlerService = new RestApiPutHandlerService(taskDAO, userDAO);
+        this.restApiDeleteHandlerService = new RestApiDeleteHandlerService(taskDAO);
+
 
         servletContext.setAttribute("authenticationService", authenticationService);
         servletContext.setAttribute("taskService", taskService);

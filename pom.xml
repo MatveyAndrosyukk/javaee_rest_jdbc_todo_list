@@ -10,7 +10,6 @@
   <packaging>war</packaging>
 
   <name>javaee_rest_jdbc_todo_list Maven Webapp</name>
-  <!-- FIXME change it to the project's website -->
   <url>https://www.example.com</url>
 
   <properties>
@@ -110,7 +109,7 @@
             <user>user228</user>
             <password>user228</password>
             <driver>com.mysql.jdbc.Driver</driver>
-            <url>jdbc:mysql://localhost:3306/javaee_task_db?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;connectionCollation=utf8_general_ci&amp;characterSetResults=UTF-8</url>
+            <url>jdbc:mysql://mysql_db:3308/javaee_task_db?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;connectionCollation=utf8_general_ci&amp;characterSetResults=UTF-8</url>
           </configuration>
         </plugin>
         <plugin>
