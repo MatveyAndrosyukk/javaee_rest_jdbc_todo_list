@@ -1,7 +1,12 @@
-FROM maven:3.6.3-jdk-11
+#FROM maven:3.6.3-jdk-11
+#
+#COPY ./ ./
+#
+#RUN mvn clean package
+#
+#CMD ["java", "-war","target/javaee_rest_jdbc_todo_list.war"]
 
-COPY ./ ./
 
-RUN mvn clean package
+FROM tomcat
 
-CMD ["java", "-war","target/javaee_rest_jdbc_todo_list.war"]
+COPY target/javaee_rest_jdbc_todo_list.war /usr/local/tomcat/webapps/

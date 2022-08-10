@@ -1,11 +1,11 @@
 version: "3.7"
 services:
   api_service:
-    build: .
+    image: "task_api"
     hostname: api_service
     restart: always
     ports:
-      - 8090:8080
+      - 8080:8080
     depends_on:
       - mysql_db
   mysql_db:
