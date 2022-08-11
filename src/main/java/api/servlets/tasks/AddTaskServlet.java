@@ -38,7 +38,7 @@ public class AddTaskServlet extends HttpServlet {
 
         if (!TaskUtils.requestIsValid(request, optionalUserByUsername)){
             request.setAttribute("tasks", taskService.findAll());
-            getServletContext().getRequestDispatcher("/WEB-INF/view/start-page.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/WEB-INF/view/all-tasks-page.jsp").forward(request, response);
             return;
         }
 

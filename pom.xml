@@ -106,10 +106,10 @@
           <artifactId>flyway-maven-plugin</artifactId>
           <version>1.5</version>
           <configuration>
-            <user>user228</user>
-            <password>user228</password>
+            <user>root</user>
+            <password>root</password>
             <driver>com.mysql.jdbc.Driver</driver>
-            <url>jdbc:mysql://mysql_db:3306/javaee_task_db?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;connectionCollation=utf8_general_ci&amp;characterSetResults=UTF-8</url>
+            <url>jdbc:mysql://mysqldb:3306/task_service_db?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;connectionCollation=utf8_general_ci&amp;characterSetResults=UTF-8</url>
           </configuration>
         </plugin>
         <plugin>

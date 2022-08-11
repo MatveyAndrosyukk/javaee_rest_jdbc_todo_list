@@ -11,9 +11,9 @@ import javax.sql.DataSource;
 @Slf4j
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class DataSourceMySQL {
-    final static String USERNAME = "user228";
-    final static String PASSWORD = "user228";
-    final static String URL = "jdbc:mysql://mysql_db:3306/javaee_task_db?useSSL=false";
+    final static String USERNAME = "root";
+    final static String PASSWORD = "root";
+    final static String URL = "jdbc:mysql://mysqldb:3306/task_service_db?useSSL=false";
 
     private final static HikariConfig config = new HikariConfig();
     private final static HikariDataSource dataSource;

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(urlPatterns = "/tasks-menu")
-public class GetStartPageServlet extends HttpServlet {
+public class GetAllTasksPageServlet extends HttpServlet {
     private TaskService taskService;
 
     @Override
@@ -21,6 +21,6 @@ public class GetStartPageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
         request.setAttribute("tasks", taskService.findAll());
-        getServletContext().getRequestDispatcher("/WEB-INF/view/start-page.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/WEB-INF/view/all-tasks-page.jsp").forward(request, response);
     }
 }

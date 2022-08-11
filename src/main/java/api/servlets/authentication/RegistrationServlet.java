@@ -15,9 +15,6 @@ import java.sql.SQLException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * @author Sergei Viacheslaev
- */
 @Slf4j
 @WebServlet(urlPatterns = "/registration")
 public class RegistrationServlet extends HttpServlet {
