@@ -11,15 +11,15 @@
 <body>
 <a href="<c:url value="/logout"/>">
     <img style="width: 90px; height: 45px;" src="<%=request.getContextPath()%>/images/logout_button.png"
-         alt="Logout button">
+         alt="Logout Button">
 </a>
 <a href="<c:url value="/my-tasks"/>">
     <img style="width: 90px; height: 45px;" src="<%=request.getContextPath()%>/images/my_tasks_button.png"
-         alt="My tasks button">
+         alt="My Tasks Button">
 </a>
 <a href="<c:url value="/developer-info"/>">
     <img style="width: 90px; height: 45px;" src="<%=request.getContextPath()%>/images/developer_info_button.png"
-         alt="Developer info button">
+         alt="Developer Info Button">
 </a>
 <hr/>
 <h2>Получить JSON задачи по id</h2>

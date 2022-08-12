@@ -31,14 +31,14 @@ public class RestApiGetHandlerService implements RestApiHandler{
             long id = parseID(requestPath);
             Task task = taskDAO.findById(id).orElseThrow(SQLException::new);
             return Optional.ofNullable(objectMapper.writeValueAsString(task));
-        }else if (requestPath.matches("^/tasks/$")){
+        }else if (requestPath.matches("^/tasks/$") || requestPath.matches("^/tasks$")){
             final List<Task> tasks = taskDAO.findAll();
             return Optional.ofNullable(objectMapper.writeValueAsString(tasks));
         }else if (requestPath.matches("^/users/\\d+$")){
             long id = parseID(requestPath);
             User user = userDAO.findById(id).orElseThrow(SQLException::new);
             return Optional.ofNullable(objectMapper.writeValueAsString(user));
-        }else if (requestPath.matches("^/users/$")){
+        }else if (requestPath.matches("^/users/$") || requestPath.matches("^/users$")){
             final List<User> users = userDAO.findAll();
             return Optional.ofNullable(objectMapper.writeValueAsString(users));
         }

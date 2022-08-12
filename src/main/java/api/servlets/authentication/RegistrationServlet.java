@@ -38,7 +38,7 @@ public class RegistrationServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
         resp.setContentType("text/HTML");
@@ -52,7 +52,8 @@ public class RegistrationServlet extends HttpServlet {
         if (validateEmail(email)) {
             try {
                 userService.registerUser(username, password, name, surname, email);
-                resp.getWriter().write(USER_REGISTRATION_SUCCESS);
+                req.setAttribute("userRegistrationSuccess", USER_REGISTRATION_SUCCESS);
+                getServletContext().getRequestDispatcher("/WEB-INF/view/registration-page.jsp").forward(req, resp);
             } catch (SQLException e) {
                 e.printStackTrace();
             } catch (UserAlreadyRegisteredException e) {
@@ -61,7 +62,8 @@ public class RegistrationServlet extends HttpServlet {
                 resp.getWriter().write(EMAIL_ALREADY_REGISTERED);
             }
         } else {
-            resp.getWriter().write(EMAIL_INCORRECTLY_FILLED);
+            req.setAttribute("emailIncorrectlyFilled", EMAIL_INCORRECTLY_FILLED);
+            getServletContext().getRequestDispatcher("/WEB-INF/view/registration-page.jsp").forward(req, resp);
         }
 
     }

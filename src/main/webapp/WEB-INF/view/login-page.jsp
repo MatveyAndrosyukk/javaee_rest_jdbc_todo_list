@@ -9,7 +9,8 @@
 </head>
 <body>
 <h2>Аутентификация</h2>
-<form method="post" action="<c:out value='/login'/>">
+<p><c:out value="${requestScope.credentialsError}"/></p>
+<form method="post" action="<c:url value='/login'/>">
     <p>
         <label>
             <input type="text" name="email" placeholder="Введите email" required>
@@ -24,7 +25,7 @@
     <input type="reset" value="Очистить">
 </form>
 <br>
-<form method="get" action="<c:out value='/registration'/>">
+<form method="get" action="<c:url value='/registration'/>">
     <input type="submit" value="Зарегистрироваться">
 </form>
 </body>

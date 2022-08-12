@@ -16,8 +16,9 @@ public class AuthenticationFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
         String path = request.getRequestURI().substring(request.getContextPath().length());
-        if(path.startsWith("/login") || path.startsWith("/WEB-INF/images") ||
+        if(path.startsWith("/login") || path.startsWith("/images") ||
                 path.startsWith("/registration") || path.startsWith("/rest")){
+            System.out.println(path + " из if выражения");
             filterChain.doFilter(request, response);
             return;
         }
@@ -25,7 +26,9 @@ public class AuthenticationFilter implements Filter {
         HttpSession session = request.getSession(false);
         if (session == null){
             request.getRequestDispatcher("/WEB-INF/view/login-page.jsp").forward(request, response);
+            System.out.println(path + " попал в session == null");
         }else {
+            System.out.println(path + " попал в session != null");
             filterChain.doFilter(request, response);
         }
     }

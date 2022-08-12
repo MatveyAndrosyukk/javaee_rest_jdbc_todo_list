@@ -9,6 +9,7 @@ import java.io.IOException;
 
 @WebServlet(urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
+    private static final String BAD_CREDENTIALS = "Неверный логин или пароль!";
     private AuthenticationService authenticationService;
 
     @Override
@@ -22,17 +23,17 @@ public class LoginServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         final String email = request.getParameter("email");
         final String password = request.getParameter("password");
 
         if (authenticationService.isAuthenticated(email, password)){
             final HttpSession session = request.getSession();
             session.setAttribute("email", email);
-            response.sendRedirect("/tasks-menu");
+            response.sendRedirect(request.getContextPath() + "/tasks-menu");
         }else {
-            response.setContentType("text/HTML; charset=UTF-8");
-            response.getWriter().write("Неверный логин или пароль");
+            request.setAttribute("credentialsError", BAD_CREDENTIALS);
+            getServletContext().getRequestDispatcher("/WEB-INF/view/login-page.jsp").forward(request, response);
         }
 
     }

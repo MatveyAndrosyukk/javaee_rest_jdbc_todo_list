@@ -13,7 +13,7 @@ import javax.sql.DataSource;
 public class DataSourceMySQL {
     final static String USERNAME = "root";
     final static String PASSWORD = "root";
-    final static String URL = "jdbc:mysql://mysqldb:3306/task_service_db?useSSL=false";
+    final static String URL = "jdbc:mysql://localhost:3308/task_service_db?useSSL=false";
 
     private final static HikariConfig config = new HikariConfig();
     private final static HikariDataSource dataSource;

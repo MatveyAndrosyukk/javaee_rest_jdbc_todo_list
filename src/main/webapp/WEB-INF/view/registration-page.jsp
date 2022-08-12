@@ -16,8 +16,9 @@
 </head>
 <body>
 <h2>Регистрация пользователя</h2>
-
-<form method="post" action="<c:out value='/registration'/>">
+<p><c:out value="${requestScope.userRegistrationSuccess}"/></p>
+<p><c:out value="${requestScope.emailIncorrectlyFilled}"/></p>
+<form method="post" action="<c:url value='/registration'/>">
     <p>
         <label>
             <input type="text" name="username" placeholder="Введите username" required/>
@@ -55,7 +56,7 @@
 
 <br>
 
-<form method="get" action="<c:out value='/login'/>">
+<form method="get" action="<c:url value='/login'/>">
     <input type="submit" value="Вернуться">
 </form>
 </body>

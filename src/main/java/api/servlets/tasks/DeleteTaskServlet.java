@@ -25,6 +25,5 @@ public class DeleteTaskServlet extends HttpServlet {
         taskService.deleteById(Long.parseLong(id));
 
         response.sendRedirect(request.getContextPath() + "/tasks-menu");
-        System.out.println(request.getContextPath());
     }
 }
