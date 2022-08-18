@@ -26,7 +26,7 @@ Press **Ctrl+C** to stop containers running
 2. Go to login page and log in. 
 4. Move to a tasks page and use site with pleasure.  
 
-### Also
+## Additional information
 1. If you don't want to register, you can use one of pre created users to log in:
 + admin - admin
 + m - m
